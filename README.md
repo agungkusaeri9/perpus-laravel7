@@ -1,4 +1,5 @@
-Pastikan laptop sudah terinstall xampp (php 7.2 ++) & composer
+Pastikan laptop sudah terinstall xampp (php 7.2 ++) & composer.
+
 Langkah-langkah installasi.
 1. composer install
 2. copy file .env.example menjadi .env dan edit database,user,password
