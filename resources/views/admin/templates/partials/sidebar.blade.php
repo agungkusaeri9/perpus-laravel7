@@ -85,19 +85,6 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item mt-5">
-                    <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();" class="nav-link">
-                        <i class="nav-icon fas fa-sign-out-alt"></i>
-                        <p>Logout</p>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </a>
-                </li>
-                    
-                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
