@@ -2,22 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 
 Auth::routes(['verify' => true]);
 
-Route::get('/history', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/history', 'BorrowHistoryController@history')->name('history')->middleware('auth');
 Route::get('/', 'BookController@index')->name('book.index');
+Route::get('/search', 'BookController@search')->name('book.search');
 Route::get('/{book:slug}', 'BookController@show')->name('book.show');
 Route::post('/{book:slug}/borrow', 'BorrowHistoryController@borrow')->name('borrow.history')->middleware('auth');
 Route::patch('/{borrowHistory:id}/cancel', 'BorrowHistoryController@cancel')->name('borrow.cancel')->middleware('auth');

@@ -20,7 +20,7 @@ class BorrowHistoryController extends Controller
             return redirect()->route('book.index')->with('error','Stok buku kosong.');
         }
 
-        if(BorrowHistory::where('user_id', $user->id)->where('status','belum diambil')->count() >= 3 ){
+        if(BorrowHistory::where('user_id', $user->id)->where('returned_at', null)->count() >= 3 ){
             return redirect()->route('book.index')->with('error','Anda sudah meminjam 3 buku dan belum diambil, silahkan ambil terlebih dahulu atau kembalikan buku yang sebelumnya dipinjam');
         }
 
@@ -31,7 +31,7 @@ class BorrowHistoryController extends Controller
 
         $book->decrement('qty');
 
-        return redirect()->route('home')->with('success','Anda berhasil meminjam buku ini, silahkan ambil buku di perpustakaan kami.');
+        return redirect()->route('history')->with('success','Anda berhasil meminjam buku ini, silahkan ambil buku di perpustakaan kami.');
     }
 
     public function cancel(BorrowHistory $borrowHistory)
@@ -39,5 +39,16 @@ class BorrowHistoryController extends Controller
         $borrowHistory->book->increment('qty');
         $borrowHistory->delete();
         return redirect()->route('book.index')->with('success','Anda membatalkan peminjaman.');
+    }
+
+    public function history()
+    {
+        $user = Auth::user();
+        $borrows = BorrowHistory::latest()->where('user_id', $user->id)->get();
+
+        return view('frontend.history',[
+            'title' => 'Selamat datang di perpustakaan.',
+            'borrows' => $borrows,
+        ]);
     }
 }

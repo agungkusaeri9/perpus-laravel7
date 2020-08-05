@@ -2,7 +2,9 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <h2>History Peminjaman</h2>
+        <div class="col-lg-12 mt-4 mb-2">
+            <h4>History Peminjaman</h4>
+        </div>
     </div>
     <div class="row">
         @foreach ($borrows as $borrow)
@@ -14,7 +16,13 @@
                     <div class="info d-flex justify-content-between mb-2">
                         <small class="mr-2"><i>Penulis</i> <b>{{ $borrow->book->author->name }}</b></small>
                         <small><i>Stok</i> <b>{{ $borrow->book->qty }}</b></small>
-                        <small class="badge badge-info">{{ $borrow->status }}</small>
+                        @if ($borrow->status == 'sudah dikembalikan')
+                        <small class="badge badge-success">{{ $borrow->status }}</small>
+                        @elseif($borrow->status == 'belum diambil')
+                        <small class="badge badge-success">{{ $borrow->status }}</small>
+                        @elseif($borrow->status == 'sudah dikembalikan')
+                        <small class="badge badge-danger">{{ $borrow->status }}</small>
+                        @endif
                     </div>
                     <p class="card-text">{{ Str::limit($borrow->book->description,100) }}</p>
                         <p class="card-text"><small class="text-muted">Dipinjam {{ $borrow->created_at->diffForHumans() }}</small></p>

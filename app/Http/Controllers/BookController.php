@@ -25,4 +25,14 @@ class BookController extends Controller
             'book' => $book
         ]);
     }
+
+    public function search()
+    {
+        $keyword = request('keyword');
+        $books = Book::where("title","like","%$keyword%")->orWhere("description","like","%$keyword%")->latest()->paginate(10);
+        return view('frontend.book.index',[
+            'title' => 'Kumpulan buku yang boleh kamu pinjam',
+            'books' => $books
+        ]);
+    }
 }

@@ -27,7 +27,15 @@
                                     <td>{{ $borrow->user->name }}</td>
                                     <td>{{ $borrow->book->title }}</td>
                                     <td>{{ $borrow->created_at->format('d/m/Y') }}</td>
-                                    <td>{{ $borrow->status }}</td>
+                                    <td>
+                                        @if ($borrow->status == 'belum diambil')
+                                        <span class="badge badge-warning">{{ $borrow->status }}</span>    
+                                        @elseif($borrow->status == 'sudah diambil')
+                                        <span class="badge badge-info">{{ $borrow->status }}</span>
+                                        @elseif($borrow->status == 'sudah dikembalikan')
+                                        <span class="badge badge-success">{{ $borrow->status }}</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         @if ($borrow->returned_at == null)
                                             -

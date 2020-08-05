@@ -25,7 +25,13 @@
                                     <td>{{ $borrow->user->name }}</td>
                                     <td>{{ $borrow->book->title }}</td>
                                     <td>{{ $borrow->created_at->format('d/m/Y') }}</td>
-                                    <td>{{ $borrow->status }}</td>
+                                    <td>
+                                        @if ($borrow->status == 'belum diambil')
+                                        <span class="badge badge-warning">{{ $borrow->status }}</span>    
+                                        @else
+                                        <span class="badge badge-info">{{ $borrow->status }}</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
