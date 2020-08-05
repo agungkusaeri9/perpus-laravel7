@@ -46,14 +46,23 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => ['required','max:191','unique:books,title'],
-            'description' => ['required','min:20'],
-            'qty' => ['required','numeric'],
-            'author' => ['required'],
-            'cover' => ['image','mimes:jpg,jpeg,png','max:2048']
-        ]);
+        // $request->validate([
+        //     'title' => ['required','max:191','unique:books,title'],
+        //     'description' => ['required','min:20'],
+        //     'qty' => ['required','numeric'],
+        //     'cover' => ['image','mimes:jpg,jpeg,png','max:2048']
+        // ]);
         
+
+        if($request->author == "null"){
+            $author = new Author();
+            $author->name = $request->authorAlt;
+            $author->save();
+            $author = Author::where('name', $request->authorAlt)->first()->id;
+        }else{
+            $author = $request->author;
+        }
+
         $cover_name = Str::slug($request->title);
         $file = $request->file('cover');
         if($file){
@@ -67,7 +76,7 @@ class BookController extends Controller
             'slug' => Str::slug($request->title),
             'description' => $request->description,
             'qty' => $request->qty,
-            'author_id' => $request->author,
+            'author_id' => $author,
             'cover' => $cover
         ]);
         return redirect()->route('admin.book.index')->with('success','Buku berhasil Ditambah.');

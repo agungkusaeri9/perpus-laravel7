@@ -28,17 +28,51 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.author.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>Penulis</p>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-users"></i>
+                      <p>
+                        Penulis
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.author.create') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tambah Penulis</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.author.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Data Penulis</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.book.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-book"></i>
-                        <p>Buku</p>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-book"></i>
+                      <p>
+                        Buku
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.book.create') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tambah Buku</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.book.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Data Buku</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
@@ -76,11 +110,11 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.report.topBook') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Top Buku</p>
+                                <p>Buku teratas</p>
                             </a>
                             <a href="{{ route('admin.report.topUser') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>User Interaktif</p>
+                                <p>User teraktif</p>
                             </a>
                         </li>
                     </ul>

@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="row">
-            @foreach ($book->author->books->shuffle()->take(5) as $books)
+            @foreach ($book->author->books->shuffle()->take(10) as $books)
             <div class="col-lg-6">
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row no-gutters">
@@ -46,7 +46,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $books->title }}</h5>
                                 <p class="card-text">{{ Str::limit($books->description,80) }}</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <p class="card-text"><small class="text-muted">Dibuat {{ $book->created_at->diffForHumans() }}</small></p>
                             </div>
                         </div>
                     </div>

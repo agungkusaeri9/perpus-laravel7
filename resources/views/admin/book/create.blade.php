@@ -10,7 +10,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="">Judul Buku</label>
-                                <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}">
+                                <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" placeholder="Judul buku">
                                 @error('title')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -19,7 +19,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Deskripsi</label>
-                                <textarea name="description" id="" cols="30" rows="10" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+                                <textarea name="description" id="" cols="30" rows="10" class="form-control @error('description') is-invalid @enderror" placeholder="Deskripsi buku">{{ old('description') }}</textarea>
                                 @error('description')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -35,18 +35,30 @@
                                 </div>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label for="">Penulis</label>
-                                <select name="author" id="" class="form-control">
-                                    @foreach ($authors as $author)
-                                    <option value="{{ $author->id }}">{{ $author->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('author')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <label for="">Penulis</label>
+                                    <select name="author" id="" class="form-control">
+                                        <option value="null">--Penulis--</option>
+                                        @foreach ($authors as $author)
+                                        <option value="{{ $author->id }}">{{ $author->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('author')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
-                                @enderror
+                                <div class="col-lg-6">
+                                    <label for="">Jika tidak ada</label>
+                                    <input type="text" name="authorAlt" class="form-control" placeholder="Nama penulis">
+                                    @error('author')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="">Cover</label>

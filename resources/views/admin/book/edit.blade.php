@@ -41,8 +41,12 @@
                                 <label for="">Penulis</label>
                                 <select name="author" id="" class="form-control">
                                     @foreach ($authors as $author)
-                                    <option @if($author->id == $book->author_id) selected @endif value="{{ $author->id }}">{{ $author->name }}</option>
-                                    <option value="{{ $author->id }}">{{ $author->name }}</option>
+                                        @if ($author->id === $book->author_id)
+                                        <option selected value="{{ $author->id }}">{{ $author->name }}</option>
+                                        @else 
+                                        <option value="{{ $author->id }}">{{ $author->name }}</option>
+                                        @endif
+                                        
                                     @endforeach
                                 </select>
                                 @error('author')

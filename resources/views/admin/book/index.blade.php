@@ -17,6 +17,7 @@
                                     <th>No</th>
                                     <th>Cover</th>
                                     <th>Judul Buku</th>
+                                    <th>Penulis</th>
                                     <th>Jumlah Buku</th>
                                     <th style="min-width:100px">Aksi</th>
                                 </tr>
@@ -29,6 +30,7 @@
                                         <img src="{{ $book->getCover() }}" width="70" height="70" alt="">
                                     </td>
                                     <td>{{ $book->title }}</td>
+                                    <td>{{ $book->author->name }}</td>
                                     <td>{{ $book->qty }}</td>
                                     <td>
                                         <a href="{{ route('admin.book.edit', $book->slug) }}" class="btn btn-sm btn-warning">Edit</a>

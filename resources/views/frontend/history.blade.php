@@ -1,10 +1,17 @@
 @extends('frontend.templates.default')
 @section('content')
-<div class="container">
+<div class="container" style="min-height:580px;">
     <div class="row">
         <div class="col-lg-12 mt-4 mb-2">
             <h4>History Peminjaman</h4>
         </div>
+    </div>
+    <div class="row">
+        @if ($borrows->isEmpty())
+        <div class="alert alert-danger">
+            Anda belum melakukan peminjaman.
+        </div>
+        @endif
     </div>
     <div class="row">
         @foreach ($borrows as $borrow)
@@ -19,7 +26,7 @@
                         @if ($borrow->status == 'sudah dikembalikan')
                         <small class="badge badge-success">{{ $borrow->status }}</small>
                         @elseif($borrow->status == 'belum diambil')
-                        <small class="badge badge-success">{{ $borrow->status }}</small>
+                        <small class="badge badge-danger">{{ $borrow->status }}</small>
                         @elseif($borrow->status == 'sudah dikembalikan')
                         <small class="badge badge-danger">{{ $borrow->status }}</small>
                         @endif
@@ -38,7 +45,6 @@
                     </div>
                 </div>
             </div>
-            
         @endforeach
     </div>
 </div>
